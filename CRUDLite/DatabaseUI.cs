@@ -49,10 +49,6 @@ namespace CRUDLiteLibrary
 
             }
         }
-
-
-
-
         //Switch method
         private static void ExitProgram()
         {
@@ -96,7 +92,7 @@ namespace CRUDLiteLibrary
                 using (var cmd = conn.CreateCommand())
                 {
                     ViewRecord();
-                    (string? date, double time) = AskForDataRecordInput();
+                    (string date, double time) = AskForDataRecordInput();
                     cmd.CommandText =
                                     @"INSERT INTO CodingTracker 
                                         (Date, Hour)
@@ -138,7 +134,7 @@ namespace CRUDLiteLibrary
                     }
                     else
                     {
-                        (string? date, double hour) = AskForDataRecordInput();
+                        (string date, double hour) = AskForDataRecordInput();
                         cmd.CommandText = $"UPDATE CodingTracker SET Date = {date}, Hour = {hour} Where Id = {Id}";
                         int row = cmd.ExecuteNonQuery();
                         if (row == 0)
@@ -202,45 +198,36 @@ namespace CRUDLiteLibrary
                 {
                     ViewRecord();
                     cmd.CommandText = "SELECT SUM(Hour) FROM CodingTracker";
-                    if (cmd.ExecuteScalar() == null)
+
+                    var temp = cmd.ExecuteScalar();
+
+                    double total = Convert.IsDBNull(temp) ? 0 : (double) temp;
+
+                    if (total == 0)
                     {
-                        Console.WriteLine("\nNo Record is found in the table..");
-                        Console.ReadLine();
+                        Console.WriteLine("\nError, You probably do not have any hours yet..");
                     }
                     else
                     {
-                        string? total = cmd.ExecuteScalar().ToString();
-                        if (total == "")
-                        {
-                            Console.WriteLine("\nError, You probably do not have any hours yet..");
-                        }
-                        else
-                        {
-                            Console.Write($"\nYou have accumulated a total of {total} hours in coding. Please keep it up!");
-                        }
-
+                        Console.Write($"\nYou have accumulated a total of {total} hours in coding. Please keep it up!");
                     }
-
                 }
             }
         }
-
-
-
-
-
-
-
         //input method
-        private static (string? date, double time) AskForDataRecordInput()
+        private static (string date, double time) AskForDataRecordInput()
         {
-            Console.Write("\nInsert Date: ");
-            string? date = Console.ReadLine();
+
+            RecordProperty record = new RecordProperty();
+
+            Console.Write("\nUpdated current Date...");
+            record.Date = DateTime.Now.ToString(format: "yyyy-MM-dd");
+
             Console.Write("\nInsert Time: ");
             string? input = Console.ReadLine();
-            double time = ConvertToDouble(input);
+            record.Time = ConvertToDouble(input);
 
-            return (date, time);
+            return (record.Date, record.Time);
         }
         private static int ConvertToInteger(string? input)
         {

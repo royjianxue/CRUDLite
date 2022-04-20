@@ -12,7 +12,7 @@ namespace CRUDLiteLibrary
         const string connectionString = "Data Source=Coding_Time_Tracker.db";
         internal static SQLiteConnection CreateConnection()
         {
-           
+
             var conn = new SQLiteConnection(connectionString);
             conn.Open();
             return conn;
@@ -39,7 +39,17 @@ namespace CRUDLiteLibrary
             }
         }
 
+    }
 
+    internal class RecordProperty
+    {
+        public int ID { get; set; }
+        public string? Date { get; set; }
+        public double Time { get; set; }
     }
 }
+            
+
+
+
 
