@@ -220,7 +220,7 @@ namespace CRUDLiteLibrary
 
             RecordProperty record = new RecordProperty();
 
-            Console.Write("\nUpdated current Date...");
+            Console.Write("\nUpdated current Date....");
             record.Date = DateTime.Now.ToString(format: "yyyy-MM-dd");
 
             Console.Write("\nInsert Time: ");
