@@ -81,7 +81,7 @@ namespace CRUDLiteLibrary
                     }
                     else
                     {
-                        Console.WriteLine("No records found..\n");
+                        Console.WriteLine("No records found.\n");
                     }
                     
                 }
