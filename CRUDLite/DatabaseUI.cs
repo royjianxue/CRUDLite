@@ -79,7 +79,11 @@ namespace CRUDLiteLibrary
                         Console.WriteLine("------------------------------------");
 
                     }
-                    Console.WriteLine("No records found..\n");
+                    else
+                    {
+                        Console.WriteLine("No records found..\n");
+                    }
+                    
                 }
 
             }
@@ -140,12 +144,12 @@ namespace CRUDLiteLibrary
                         if (row == 0)
                         {
                             Console.WriteLine($"\nRecord with Id {Id} does not exist.. create a record first..");
+                            Console.ReadLine();
                         }
                         else
                         {
                             Console.Write("\nSelected row has been updated...");
                             ViewRecord();
-                            Console.ReadLine();
                         }
                     }
 
@@ -183,7 +187,6 @@ namespace CRUDLiteLibrary
                         {
                             Console.Write("\nSelected row has been deleted...");
                             ViewRecord();
-                            Console.ReadLine();
                         }
                     }
 
