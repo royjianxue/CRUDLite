@@ -31,7 +31,7 @@ namespace CRUDLiteLibrary
                                 Date TEXT,
                                 Hour DOUBLE
                             )
-                            ";
+                             ";
                     cmd.ExecuteNonQuery();
                     Console.ReadKey();
 
