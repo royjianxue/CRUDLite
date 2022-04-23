@@ -33,8 +33,6 @@ namespace CRUDLiteLibrary
                             )
                              ";
                     cmd.ExecuteNonQuery();
-                    Console.ReadKey();
-
                 }
             }
         }

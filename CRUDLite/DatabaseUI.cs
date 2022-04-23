@@ -18,8 +18,7 @@ namespace CRUDLiteLibrary
                 DisplayOptionsToConsole();
                 int option = AskUserForValidInput("\nWhat Would you like to do? (Select 0 to 5): ");
                 DatabaseUI.RunSwitch(option);
-                Console.ReadLine();
-            } while (runAgain("Do you want to continue? (yes or no): "));
+            } while (runAgain("\nWould like to go back to Main Menu?(Yes -> go back, Press Any -> exit): "));
 
         }
         public static void RunSwitch(int option)
@@ -66,7 +65,7 @@ namespace CRUDLiteLibrary
 
                     cmd.CommandText = "SELECT * FROM CodingTracker";
                     SQLiteDataReader rdr = cmd.ExecuteReader();
-                    Console.WriteLine("\nThese are you existing records......");
+                    Console.WriteLine("\nThese are your existing records......");
                     Console.WriteLine("------------------------------------");
                     Console.WriteLine(string.Format("{0,-10} | {1,-10} | {2,5}", rdr.GetName(0), rdr.GetName(1), rdr.GetName(2)));
                     Console.WriteLine("------------------------------------");
@@ -212,7 +211,7 @@ namespace CRUDLiteLibrary
                     }
                     else
                     {
-                        Console.Write($"\nYou have accumulated a total of {total} hours in coding. Please keep it up!");
+                        Console.Write($"\nYou have accumulated a total of {total} hours in coding. Please keep it up!\n");
                     }
                 }
             }
@@ -276,6 +275,8 @@ namespace CRUDLiteLibrary
         }
         private static bool runAgain(string message)
         {
+            ConsoleKeyInfo consoleKey = Console.ReadKey(true);
+
             Console.Write(message);
             string? input = Console.ReadLine();
             if (input.ToLower() == "yes")
