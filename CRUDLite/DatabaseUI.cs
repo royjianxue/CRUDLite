@@ -275,8 +275,6 @@ namespace CRUDLiteLibrary
         }
         private static bool runAgain(string message)
         {
-            ConsoleKeyInfo consoleKey = Console.ReadKey(true);
-
             Console.Write(message);
             string? input = Console.ReadLine();
             if (input.ToLower() == "yes")
